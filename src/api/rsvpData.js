@@ -2,6 +2,25 @@ import { clientCredentials } from '../utils/client';
 
 const endpoint = clientCredentials.databaseURL;
 
+const getAllUserRsvps = (uid) =>
+  new Promise((resolve, reject) => {
+    fetch(`${endpoint}/rsvps/users/${uid}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application.json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data) {
+          resolve(Object.values(data));
+        } else {
+          resolve([]);
+        }
+      })
+      .catch(reject);
+  });
+
 const createRsvp = (payload) =>
   new Promise((resolve, reject) => {
     fetch(`${endpoint}/rsvps`, {

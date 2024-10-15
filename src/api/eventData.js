@@ -57,7 +57,7 @@ const getSingleEvent = (id) =>
         }
       })
       .catch(reject);
-  })
+  });
 
 const createEvent = (payload) =>
   new Promise((resolve, reject) => {
@@ -75,7 +75,7 @@ const createEvent = (payload) =>
 
 const updateEvents = (payload) =>
   new Promise((resolve, reject) => {
-    fetch(`${endoint}/events/${id}`, {
+    fetch(`${endpoint}/events/${payload.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application.json',
@@ -87,17 +87,17 @@ const updateEvents = (payload) =>
       .catch(reject);
   });
 
-  const deleteEvent = (id) =>
-    new Promise((resolve, reject) => {
-      fetch(`${endpoint}/events/${id}`, {
-        method: 'DELETE',
-        headers: {
-          'Conent-Type': 'application.json',
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => resolve(data))
-        .catch(reject);
-    });
+const deleteEvent = (id) =>
+  new Promise((resolve, reject) => {
+    fetch(`${endpoint}/events/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Conent-Type': 'application.json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => resolve(data))
+      .catch(reject);
+  });
 
-export { getAllEvents, getAllUserEvents, getSingleEvent, createEvent, deleteEvent };
+export { getAllEvents, getAllUserEvents, getSingleEvent, createEvent, deleteEvent, updateEvents };

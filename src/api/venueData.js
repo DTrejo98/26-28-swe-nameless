@@ -57,7 +57,7 @@ const getSingleVenue = (id) =>
         }
       })
       .catch(reject);
-  })
+  });
 
 const createVenue = (payload) =>
   new Promise((resolve, reject) => {
@@ -75,7 +75,7 @@ const createVenue = (payload) =>
 
 const updateVenues = (payload) =>
   new Promise((resolve, reject) => {
-    fetch(`${endoint}/venues/${id}`, {
+    fetch(`${endpoint}/venues/${payload.ids}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application.json',
@@ -87,17 +87,17 @@ const updateVenues = (payload) =>
       .catch(reject);
   });
 
-  const deleteVenue = (id) =>
-    new Promise((resolve, reject) => {
-      fetch(`${endpoint}/venues/${id}`, {
-        method: 'DELETE',
-        headers: {
-          'Conent-Type': 'application.json',
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => resolve(data))
-        .catch(reject);
-    });
+const deleteVenue = (id) =>
+  new Promise((resolve, reject) => {
+    fetch(`${endpoint}/venues/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Conent-Type': 'application.json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => resolve(data))
+      .catch(reject);
+  });
 
 export { getAllVenues, getAllUserVenues, getSingleVenue, createVenue, updateVenues, deleteVenue };

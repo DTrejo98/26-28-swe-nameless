@@ -48,4 +48,4 @@ const createRsvp = (payload) =>
         .catch(reject);
     });
 
-export { createRsvp, deleteRsvp };
+export { createRsvp, deleteRsvp, getAllUserRsvps };

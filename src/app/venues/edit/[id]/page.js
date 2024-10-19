@@ -8,11 +8,11 @@ import { getSingleVenue } from '../../../../api/venueData';
 export default function VenueEdit({ params }) {
   const [editItem, setEditItem] = useState({});
 
-  const { firebaseKey } = params;
+  const { id } = params;
 
   useEffect(() => {
-    getSingleVenue(firebaseKey).then(setEditItem);
-  }, [firebaseKey]);
+    getSingleVenue(id).then(setEditItem);
+  }, [id]);
 
   // pass object to form
   return (

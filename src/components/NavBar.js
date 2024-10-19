@@ -2,11 +2,11 @@
 import React from 'react';
 import Link from 'next/link';
 import { Navbar, Container, Nav, Button } from 'react-bootstrap';
-import { useAuth } from '../utils/context/authContext';
+// import { useAuth } from '../utils/context/authContext';
 import { signOut } from '../utils/auth';
 
 export default function NavBar() {
-  const { user } = useAuth();
+  // const { user } = useAuth();
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
@@ -20,8 +20,8 @@ export default function NavBar() {
             <Link className="nav-link" href="/">
               Home
             </Link>
-            <Link className="nav-link" href={`/venues/edit/${user.uid}?`}>
-              Edit Venue
+            <Link className="nav-link" href="/venues/edit/new">
+              Create Venue
             </Link>
             <Button variant="danger" onClick={signOut}>
               Sign Out

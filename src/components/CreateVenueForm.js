@@ -49,19 +49,19 @@ export default function VenueForm() {
     <form className="container" onSubmit={handleSubmit}>
       <div>
         <label htmlFor="name">Venue Name</label>
-        <input onChange={handleVenueUpdate} type="text" name="name" id="name" className="form-control" value={venueDetials.text} required />
+        <input onChange={handleVenueUpdate} type="text" name="name" id="name" className="form-control" value={venueDetials.name} required />
       </div>
       <div>
         <label htmlFor="text">Address</label>
-        <input onChange={handleVenueUpdate} type="text" name="address" id="address" className="form-control" value={venueDetials.name} />
+        <input onChange={handleVenueUpdate} type="text" name="address" id="address" className="form-control" value={venueDetials.address} />
       </div>
       <div>
         <label htmlFor="text">City</label>
-        <input onChange={handleVenueUpdate} type="text" name="city" id="city" className="form-control" value={venueDetials.name} />
+        <input onChange={handleVenueUpdate} type="text" name="city" id="city" className="form-control" value={venueDetials.city} />
       </div>
       <div>
         <label htmlFor="text">State</label>
-        <input onChange={handleVenueUpdate} type="text" name="state" id="state" className="form-control" value={venueDetials.name} />
+        <input onChange={handleVenueUpdate} type="text" name="state" id="state" className="form-control" value={venueDetials.value} />
       </div>
       <button className="btn btn-success" type="submit">
         Add/Update

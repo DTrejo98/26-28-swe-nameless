@@ -26,7 +26,7 @@ const getAllUserVenues = (uid) =>
     fetch(`${endpoint}/venues/users/${uid}`, {
       method: 'GET',
       headers: {
-        'Content-Type': 'application.json',
+        'Content-Type': 'application/json',
       },
     })
       .then((response) => response.json())
@@ -45,7 +45,7 @@ const getSingleVenue = (id) =>
     fetch(`${endpoint}/venues/${id}`, {
       method: 'GET',
       headers: {
-        'Content-Type': 'application.json',
+        'Content-Type': 'application/json',
       },
     })
       .then((response) => response.json())
@@ -64,7 +64,7 @@ const createVenue = (payload) =>
     fetch(`${endpoint}/venues`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application.json',
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(payload),
     })
@@ -75,10 +75,10 @@ const createVenue = (payload) =>
 
 const updateVenues = (payload) =>
   new Promise((resolve, reject) => {
-    fetch(`${endpoint}/venues/${payload.ids}`, {
+    fetch(`${endpoint}/venues/${payload.id}`, {
       method: 'PUT',
       headers: {
-        'Content-Type': 'application.json',
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(payload),
     })
@@ -92,7 +92,7 @@ const deleteVenue = (id) =>
     fetch(`${endpoint}/venues/${id}`, {
       method: 'DELETE',
       headers: {
-        'Conent-Type': 'application.json',
+        'Conent-Type': 'application/json',
       },
     })
       .then((response) => response.json())

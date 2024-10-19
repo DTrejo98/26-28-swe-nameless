@@ -1,5 +1,5 @@
 // import { useEffect, useState } from "react";
-// import Link from 'next/link';
+// // import Link from 'next/link';
 // import { getAllEvents } from "../api/eventData";
 
 // function Home() {

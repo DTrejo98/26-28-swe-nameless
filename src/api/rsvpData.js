@@ -7,7 +7,7 @@ const getAllUserRsvps = (uid) =>
     fetch(`${endpoint}/rsvps/users/${uid}`, {
       method: 'GET',
       headers: {
-        'Content-Type': 'application.json',
+        'Content-Type': 'application/json',
       },
     })
       .then((response) => response.json())
@@ -26,7 +26,7 @@ const createRsvp = (payload) =>
     fetch(`${endpoint}/rsvps`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application.json',
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(payload),
     })
@@ -35,17 +35,17 @@ const createRsvp = (payload) =>
       .catch(reject);
   });
 
-  const deleteRsvp = (id) =>
-    new Promise((resolve, reject) => {
-      fetch(`${endpoint}/rsvps/${id}`, {
-        method: 'DELETE',
-        headers: {
-          'Conent-Type': 'application.json',
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => resolve(data))
-        .catch(reject);
-    });
+const deleteRsvp = (id) =>
+  new Promise((resolve, reject) => {
+    fetch(`${endpoint}/rsvps/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Conent-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => resolve(data))
+      .catch(reject);
+  });
 
 export { createRsvp, deleteRsvp, getAllUserRsvps };

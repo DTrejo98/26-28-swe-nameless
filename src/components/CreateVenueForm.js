@@ -42,19 +42,27 @@ export default function VenueForm({ obj = initialState }) {
     <form onSubmit={handleSubmit} className="text-black">
       <h2 className="text-white mt-5">{obj.id ? 'Update' : 'Create'} Venue</h2>
       <div>
-        <label htmlFor="name">Venue Name</label>
+        <label htmlFor="name" style={{ color: 'white ' }}>
+          Venue Name
+        </label>
         <input onChange={handleVenueUpdate} type="text" name="name" id="name" className="form-control" value={venueDetails.name} required />
       </div>
       <div>
-        <label htmlFor="text">Address</label>
+        <label htmlFor="text" style={{ color: 'white ' }}>
+          Address
+        </label>
         <input onChange={handleVenueUpdate} type="text" name="address" id="address" className="form-control" value={venueDetails.address} />
       </div>
       <div>
-        <label htmlFor="text">City</label>
+        <label htmlFor="text" style={{ color: 'white ' }}>
+          City
+        </label>
         <input onChange={handleVenueUpdate} type="text" name="city" id="city" className="form-control" value={venueDetails.city} />
       </div>
       <div>
-        <label htmlFor="text">State</label>
+        <label htmlFor="text" style={{ color: 'white ' }}>
+          State
+        </label>
         <input onChange={handleVenueUpdate} type="text" name="state" id="state" className="form-control" value={venueDetails.value} />
       </div>
       <button className="btn btn-success" type="submit">

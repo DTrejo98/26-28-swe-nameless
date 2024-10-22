@@ -25,13 +25,15 @@ function eventsCard({ eventsObj, onUpdate }) {
       <Card.Body>
         <Card.Title>{eventsObj.title}</Card.Title>
         <p className="card-text bold">
-          {eventsObj.sale && (
-            <span>
-              SALE
-              <br />
-            </span>
-          )}{' '}
-          ${eventsObj.artist}${eventsObj.venue}${eventsObj.city}
+          {/* {eventsObj.sale && (
+              <span>
+                SALE
+                <br />
+              </span>
+            )}{' '} */}
+          {eventsObj.artist}
+          {eventsObj.venue.name}
+          {eventsObj.city}
         </p>
         {/* DYNAMIC LINK TO VIEW THE BOOK DETAILS
           <Link href={`/book/${bookObj.firebaseKey}`} passHref>
@@ -41,7 +43,7 @@ function eventsCard({ eventsObj, onUpdate }) {
           </Link> */}
         {/* DYNAMIC LINK TO EDIT THE events DETAILS  */}
         <Link href={`/events/edit/${eventsObj.id}`} passHref>
-          <Button variant="info">EDIT</Button>
+          <Button variant="info">Details</Button>
         </Link>
         <Button variant="danger" onClick={deleteThisEvent} className="m-2">
           DELETE
@@ -55,7 +57,9 @@ eventsCard.propTypes = {
   eventsObj: PropTypes.shape({
     title: PropTypes.string,
     artist: PropTypes.string,
-    venue: PropTypes.string,
+    venue: PropTypes.shape({
+      name: PropTypes.string,
+    }),
     city: PropTypes.string,
     id: PropTypes.number,
   }).isRequired,

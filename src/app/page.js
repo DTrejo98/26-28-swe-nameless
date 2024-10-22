@@ -16,7 +16,7 @@ function Home() {
 
   // *function that makes the API call to get all events
   const getAllTheEvents = () => {
-    getAllEvents().then(() => setEvents());
+    getAllEvents().then(setEvents);
   };
 
   // *API call to get allEvents on component to render
@@ -32,7 +32,7 @@ function Home() {
       </Link>
       <div className="d-flex flex-wrap">
         {events.map((event) => (
-          <EventsCard key={events.id} eventsObj={event} onUpdate={getAllTheEvents} />
+          <EventsCard key={event.id} eventsObj={event} onUpdate={getAllTheEvents} />
         ))}
       </div>
     </div>

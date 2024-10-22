@@ -21,7 +21,7 @@ export default function NavBar() {
               Home
             </Link>
             <Link className="nav-link" href="/venues/edit/new">
-              Create Venue
+              Create/Update Venue
             </Link>
             <Button variant="danger" onClick={signOut}>
               Sign Out

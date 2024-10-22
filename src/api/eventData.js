@@ -26,7 +26,7 @@ const getAllUserEvents = (uid) =>
     fetch(`${endpoint}/events/users/${uid}`, {
       method: 'GET',
       headers: {
-        'Content-Type': 'application.json',
+        'Content-Type': 'application/json',
       },
     })
       .then((response) => response.json())
@@ -45,7 +45,7 @@ const getSingleEvent = (id) =>
     fetch(`${endpoint}/events/${id}`, {
       method: 'GET',
       headers: {
-        'Content-Type': 'application.json',
+        'Content-Type': 'application/json',
       },
     })
       .then((response) => response.json())
@@ -64,7 +64,7 @@ const createEvent = (payload) =>
     fetch(`${endpoint}/events`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application.json',
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(payload),
     })
@@ -78,7 +78,7 @@ const updateEvents = (payload) =>
     fetch(`${endpoint}/events/${payload.id}`, {
       method: 'PUT',
       headers: {
-        'Content-Type': 'application.json',
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(payload),
     })
@@ -92,7 +92,7 @@ const deleteEvent = (id) =>
     fetch(`${endpoint}/events/${id}`, {
       method: 'DELETE',
       headers: {
-        'Conent-Type': 'application.json',
+        'Conent-Type': 'application/json',
       },
     })
       .then((response) => response.json())

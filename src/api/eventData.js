@@ -13,7 +13,7 @@ const getAllEvents = () =>
       .then((response) => response.json())
       .then((data) => {
         if (data) {
-          resolve(Object.values(data));
+          resolve(data);
         } else {
           resolve([]);
         }

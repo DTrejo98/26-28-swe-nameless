@@ -4,14 +4,19 @@ import Button from 'react-bootstrap/card';
 import { Card } from 'react-bootstrap';
 import Link from 'next/link';
 import { deleteVenue } from '../api/venueData';
+import { useAuth } from '../utils/context/authContext';
 
-function venuesCard({ venuesObj, onUpdate }) {
+function VenuesCard({ venuesObj, onUpdate }) {
+  const { user } = useAuth();
+
   // * for deleteing venues
   const deleteThisVenue = () => {
-    if (window.confirm(`Delete ${venuesObj.title}?`)) {
+    if (window.confirm(`Delete ${venuesObj.name}?`)) {
       deleteVenue(venuesObj.id).then(() => onUpdate());
     }
   };
+
+  const isOwner = !venuesObj.id || venuesObj.uid === user.id;
 
   return (
     <Card style={{ width: '18rem', margin: '10px' }}>
@@ -36,26 +41,31 @@ function venuesCard({ venuesObj, onUpdate }) {
             </Button>
           </Link> */}
         {/* DYNAMIC LINK TO EDIT THE venues DETAILS  */}
-        <Link href={`/venues/edit/${venuesObj.id}`} passHref>
-          <Button variant="info">Details</Button>
-        </Link>
-        <Button variant="danger" onClick={deleteThisVenue} className="m-2">
-          DELETE
-        </Button>
+        {isOwner && (
+          <Link href={`/venues/edit/${venuesObj.id}`} passHref>
+            <Button variant="info">Edit</Button>
+          </Link>
+        )}
+        {isOwner && (
+          <Button variant="danger" onClick={deleteThisVenue} className="m-2">
+            DELETE
+          </Button>
+        )}
       </Card.Body>
     </Card>
   );
 }
 
-venuesCard.propTypes = {
+VenuesCard.propTypes = {
   venuesObj: PropTypes.shape({
     name: PropTypes.string,
     city: PropTypes.string,
     state: PropTypes.string,
     address: PropTypes.string,
-    id: PropTypes.string,
+    id: PropTypes.number,
+    uid: PropTypes.string,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
 };
 
-export default venuesCard;
+export default VenuesCard;

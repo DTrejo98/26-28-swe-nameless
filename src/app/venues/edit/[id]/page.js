@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import CreateVenueForm from '@/components/CreateVenueForm';
+import VenueForm from '@/components/CreateVenueForm';
 import { getSingleVenue } from '../../../../api/venueData';
 
 // setup function that allows a Venue to be edited
@@ -17,7 +17,7 @@ export default function EditVenue({ params }) {
   }, [id]);
 
   // pass object to form
-  return <CreateVenueForm obj={editItem} />;
+  return <VenueForm obj={editItem} />;
 }
 
 EditVenue.propTypes = {

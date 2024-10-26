@@ -19,7 +19,7 @@ const initialState = {
 // pulls in user and object details
 function VenueForm({ obj = initialState }) {
   const { user } = useAuth();
-  const [venueDetails, setVenueDetails] = useState(obj);
+  const [venueDetails, setVenueDetails] = useState(initialState);
   const router = useRouter();
 
   // brings venue data in for editing the venue

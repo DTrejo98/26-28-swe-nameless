@@ -7,7 +7,7 @@ import { getSingleVenue } from '../../../../api/venueData';
 
 // setup function that allows a Venue to be edited
 export default function EditVenue({ params }) {
-  const [editItem, setEditItem] = useState([]);
+  const [editItem, setEditItem] = useState({});
   // grabs the id
   const { id } = params;
 

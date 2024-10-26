@@ -24,11 +24,9 @@ function VenueForm({ obj = initialState }) {
 
   // brings venue data in for editing the venue
   useEffect(() => {
-    console.log('UseEffect venue details:', obj);
     if (obj.id) setVenueDetails(obj);
-    console.log(obj);
   }, [obj]);
-  console.log('Current venue details:', venueDetails);
+
   // Grants access to the event object, destructing the name and the value of the form input
   const handleVenueUpdate = (e) => {
     const { name, value } = e.target;

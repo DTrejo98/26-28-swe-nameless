@@ -42,8 +42,12 @@ function eventsCard({ eventsObj, onUpdate }) {
             </Button>
           </Link> */}
         {/* DYNAMIC LINK TO EDIT THE events DETAILS  */}
-        <Link href={`/events/edit/${eventsObj.id}`} passHref>
+        <Link href={`/events/details/${eventsObj.id}`} passHref>
           <Button variant="info">Details</Button>
+        </Link>
+
+        <Link href={`/events/edit/${eventsObj.id}`} passHref>
+          <Button variant="info">Edit</Button>
         </Link>
         <Button variant="danger" onClick={deleteThisEvent} className="m-2">
           DELETE

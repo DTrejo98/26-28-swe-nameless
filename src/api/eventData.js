@@ -49,13 +49,7 @@ const getSingleEvent = (id) =>
       },
     })
       .then((response) => response.json())
-      .then((data) => {
-        if (data) {
-          resolve(Object.values(data));
-        } else {
-          resolve([]);
-        }
-      })
+      .then((data) => resolve(data))
       .catch(reject);
   });
 

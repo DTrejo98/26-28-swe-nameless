@@ -1,10 +1,14 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import PropTypes from 'prop-types';
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import Form from 'react-bootstrap/Form';
+import { Button } from 'react-bootstrap';
 import { useAuth } from '../utils/context/authContext';
-import { createVenue } from '../api/venueData';
+import { createVenue, updateVenues } from '../api/venueData';
+
 // clears out the form after the user submits the form
 const initialState = {
   name: '',
@@ -13,11 +17,17 @@ const initialState = {
   state: '',
 };
 // pulls in user and object details
-export default function VenueForm({ obj = initialState }) {
+function VenueForm({ obj = initialState }) {
   const { user } = useAuth();
   const [venueDetails, setVenueDetails] = useState(initialState);
   const router = useRouter();
-  // Grants access to the event object, destructing the name and the value of the property
+
+  // brings venue data in for editing the venue
+  useEffect(() => {
+    if (obj.id) setVenueDetails(obj);
+  }, [obj]);
+
+  // Grants access to the event object, destructing the name and the value of the form input
   const handleVenueUpdate = (e) => {
     const { name, value } = e.target;
     // calling setVenueDetails modifying prevState and spreading it
@@ -26,51 +36,45 @@ export default function VenueForm({ obj = initialState }) {
       [name]: value,
     }));
   };
-  const resetForm = (e) => {
-    e?.preventDefault();
-  };
   // when submit button is pressed this function is run and prevents page from reloading
   const handleSubmit = (e) => {
     e.preventDefault();
-    {
-      const payload = { ...venueDetails, uid: user.uid };
-      createVenue(payload).then(() => router.push('/'));
+    const payload = { ...venueDetails, uid: user.uid };
+    // if the object already has an id then the updateVenues function is called router pushes the updated information to the venues page-else it creates a new venue
+    if (obj.id) {
+      updateVenues(payload).then(() => router.push(`/venues/`));
+    } else {
+      createVenue(payload).then(() => {
+        router.push(`/venues/`);
+      });
     }
-    resetForm();
   };
+
   return (
-    <form onSubmit={handleSubmit} className="text-black">
+    <Form onSubmit={handleSubmit} className="text-black">
       <h2 className="text-white mt-5">{obj.id ? 'Update' : 'Create'} Venue</h2>
-      <div>
-        <label htmlFor="name" style={{ color: 'white ' }}>
-          Venue Name
-        </label>
-        <input onChange={handleVenueUpdate} type="text" name="name" id="name" className="form-control" value={venueDetails.name} required />
-      </div>
-      <div>
-        <label htmlFor="text" style={{ color: 'white ' }}>
-          Address
-        </label>
-        <input onChange={handleVenueUpdate} type="text" name="address" id="address" className="form-control" value={venueDetails.address} />
-      </div>
-      <div>
-        <label htmlFor="text" style={{ color: 'white ' }}>
-          City
-        </label>
-        <input onChange={handleVenueUpdate} type="text" name="city" id="city" className="form-control" value={venueDetails.city} />
-      </div>
-      <div>
-        <label htmlFor="text" style={{ color: 'white ' }}>
-          State
-        </label>
-        <input onChange={handleVenueUpdate} type="text" name="state" id="state" className="form-control" value={venueDetails.value} />
-      </div>
-      <button className="btn btn-success" type="submit">
-        Add/Update
-      </button>
-    </form>
+
+      <FloatingLabel controlId="floatingInput1" label="name" className="mb-3">
+        <Form.Control type="text" placeholder="name" name="name" value={venueDetails.name} onChange={handleVenueUpdate} required />
+      </FloatingLabel>
+
+      <FloatingLabel controlId="floatingInput2" label="address" className="mb-3">
+        <Form.Control type="text" placeholder="Address" name="address" value={venueDetails.address} onChange={handleVenueUpdate} required />
+      </FloatingLabel>
+
+      <FloatingLabel controlId="floatingInput3" label="city" className="mb-3">
+        <Form.Control type="text" placeholder="City" name="city" value={venueDetails.city} onChange={handleVenueUpdate} required />
+      </FloatingLabel>
+
+      <FloatingLabel controlId="floatingInput4" label="state" className="mb-3">
+        <Form.Control type="text" placeholder="State" name="state" value={venueDetails.state} onChange={handleVenueUpdate} required />
+      </FloatingLabel>
+
+      <Button type="submit">{obj.id ? 'Update' : 'Create'} Venue</Button>
+    </Form>
   );
 }
+
 VenueForm.propTypes = {
   obj: PropTypes.shape({
     name: PropTypes.string,
@@ -80,3 +84,5 @@ VenueForm.propTypes = {
     id: PropTypes.number,
   }),
 };
+
+export default VenueForm;

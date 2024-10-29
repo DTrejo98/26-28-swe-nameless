@@ -21,7 +21,7 @@ function eventsCard({ eventsObj, onUpdate }) {
 
   return (
     <Card style={{ width: '18rem', margin: '10px' }}>
-      {/* <Card.Img variant="top" src={bookObj.image} alt={venuesObj.title} style={{ height: '400px' }} /> */}
+      {/* <Card.Img variant="top" src={venuesObj.image} alt={venuesObj.title} style={{ height: '400px' }} /> */}
       <Card.Body>
         <Card.Title>{eventsObj.title}</Card.Title>
         <p className="card-text bold">

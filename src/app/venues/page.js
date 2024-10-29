@@ -25,7 +25,7 @@ export default function VenuesPage() {
 
   return (
     <div className="text-center my-4">
-      <Link href="/venues/new" passHref>
+      <Link href="/venues/edit/new" passHref>
         <Button>Add Venue</Button>
       </Link>
       <div className="d-flex flex-wrap">{venues.length < 0 ? <h2>You have not created any venues</h2> : venues.map((venue) => <VenuesCard key={venue.id} venuesObj={venue} onUpdate={getAllTheVenues} />)}</div>

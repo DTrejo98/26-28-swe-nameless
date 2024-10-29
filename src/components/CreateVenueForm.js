@@ -16,6 +16,7 @@ const initialState = {
   city: '',
   state: '',
 };
+
 // pulls in user and object details
 function VenueForm({ obj = initialState }) {
   const { user } = useAuth();
@@ -36,6 +37,7 @@ function VenueForm({ obj = initialState }) {
       [name]: value,
     }));
   };
+
   // when submit button is pressed this function is run and prevents page from reloading
   const handleSubmit = (e) => {
     e.preventDefault();

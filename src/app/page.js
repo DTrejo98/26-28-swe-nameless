@@ -22,7 +22,6 @@ function Home() {
   // *API call to get allEvents on component to render
   useEffect(() => {
     getAllTheEvents();
-    console.warn(events);
   }, []);
 
   return (

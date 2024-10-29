@@ -16,7 +16,7 @@ function EventsCard({ eventsObj, onUpdate }) {
 
   // * for deleteing events
   const deleteThisEvent = () => {
-    if (window.confirm(`Delete ${eventsObj.artist} at ${eventsObj.venue.name}?`)) {
+    if (window.confirm(`Delete ${eventsObj.artist} at ${eventsObj.venue?.name}?`)) {
       deleteEvent(eventsObj.id).then(() => onUpdate());
     }
   };
@@ -29,7 +29,7 @@ function EventsCard({ eventsObj, onUpdate }) {
       <Card.Body>
         {console.warn(eventsObj)}
         <Card.Title>
-          {eventsObj.artist} at {eventsObj.venue.name}
+          {eventsObj.artist} at {eventsObj.venue?.name}
         </Card.Title>
         <p className="card-text bold">
           {/* {eventsObj.sale && (
@@ -40,20 +40,16 @@ function EventsCard({ eventsObj, onUpdate }) {
             )}{' '} */}
           {eventsObj.date}
           {eventsObj.artist}
-          {eventsObj.venue}
+          {eventsObj.venue?.name}
+
           {/* {eventsObj.city} */}
           {/* {eventsObj.ticketUrl} */}
           {/* {eventsObj.ticketPrice} */}
         </p>
-        {/* DYNAMIC LINK TO VIEW THE BOOK DETAILS
-          <Link href={`/book/${bookObj.firebaseKey}`} passHref>
-            <Button variant="primary" className="m-2">
-              VIEW
-            </Button>
-          </Link> */}
+
         {/* *DYNAMIC LINK TO events DETAILS  */}
         {isOwner && (
-          <Link href={`/events/edit/${eventsObj.id}`} passHref>
+          <Link href={`/events/details/${eventsObj.id}`} passHref>
             <Button variant="info">Details</Button>
           </Link>
         )}

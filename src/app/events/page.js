@@ -9,13 +9,13 @@ import EventsCard from '../../components/EventsCard';
 
 export default function Eventspage() {
   // *set state for events
-  const { events, setEvents } = useState([]);
+  const [events, setEvents] = useState([]);
 
   const { user } = useAuth();
 
   // *function to get all events
   const getAllTheEvents = () => {
-    getAllUserEvents(user.id).then(setEvents);
+    getAllUserEvents(user.uid).then(setEvents);
   };
 
   // *make api call to get events
@@ -28,7 +28,7 @@ export default function Eventspage() {
       <Link href="/events/new" passHref>
         <Button>Add Event</Button>
       </Link>
-      <div className="d-flex flex-wrap">{events.length < 0 ? <h2>You have not created any events</h2> : events.map((event) => <EventsCard key={event.id} eventsObj={event} onUpdate={getAllTheEvents} />)}</div>
+      <div className="d-flex flex-wrap">{events.length === 0 ? <h2>You have not created any events</h2> : events.map((event) => <EventsCard key={event.id} eventsObj={event} onUpdate={getAllTheEvents} />)}</div>
     </div>
   );
 }

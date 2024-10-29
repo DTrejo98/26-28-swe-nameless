@@ -13,7 +13,7 @@ const getAllEvents = () =>
       .then((response) => response.json())
       .then((data) => {
         if (data) {
-          resolve(data);
+          resolve(Object.values(data));
         } else {
           resolve([]);
         }
@@ -95,7 +95,7 @@ const deleteEvent = (id) =>
         'Conent-Type': 'application/json',
       },
     })
-      .then((response) => response.json())
+      // .then((response) => response.json())
       .then((data) => resolve(data))
       .catch(reject);
   });

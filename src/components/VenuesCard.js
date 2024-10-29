@@ -16,6 +16,7 @@ function VenuesCard({ venuesObj, onUpdate }) {
     }
   };
 
+  // * For getting user owned Venues
   const isOwner = !venuesObj.id || venuesObj.uid === user.id;
 
   return (

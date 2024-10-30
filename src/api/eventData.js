@@ -55,6 +55,7 @@ const getSingleEvent = (id) =>
 
 const createEvent = (payload) =>
   new Promise((resolve, reject) => {
+    console.log('Sending data:', payload);
     fetch(`${endpoint}/events`, {
       method: 'POST',
       headers: {
@@ -89,7 +90,6 @@ const deleteEvent = (id) =>
         'Conent-Type': 'application/json',
       },
     })
-      .then((response) => response.json())
       .then((data) => resolve(data))
       .catch(reject);
   });

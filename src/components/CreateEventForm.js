@@ -18,7 +18,7 @@ const initialState = {
   details: '',
   ticketUrl: '',
   ticketPrice: '',
-  imageUrl: '',
+  // imageUrl: '',
 };
 
 // pulls in user and object details
@@ -45,7 +45,7 @@ function EventForm({ obj = initialState }) {
     }));
   };
 
-  // when submit button is pressed this function is run and prevents page from reloading
+  // when submit button is pressed this function runs and prevents page from reloading
   const handleSubmit = (e) => {
     e.preventDefault();
     const payload = { ...formInput, uid: user.uid };
@@ -80,7 +80,7 @@ function EventForm({ obj = initialState }) {
       </FloatingLabel>
 
       <FloatingLabel controlId="floatingInput2" label="Artist Name" className="mb-3">
-        <Form.Control type="text" placeholder="Artist Name" name="artistName" value={formInput.artist} onChange={handleChange} required />
+        <Form.Control type="text" placeholder="Artist Name" name="artist" value={formInput.artist} onChange={handleChange} />
       </FloatingLabel>
 
       <FloatingLabel controlId="floatingTextarea" label="Details" className="mb-3">
@@ -92,12 +92,12 @@ function EventForm({ obj = initialState }) {
       </FloatingLabel>
 
       <FloatingLabel controlId="floatingInput4" label="Ticket Price" className="mb-3">
-        <Form.Control type="text" placeholder="Ticket price" name="price" value={formInput.price} onChange={handleChange} required />
+        <Form.Control type="number" placeholder="Ticket price" name="ticketPrice" value={formInput.price} onChange={handleChange} required />
       </FloatingLabel>
-
+      {/* 
       <FloatingLabel controlId="floatingInput5" label="Event Image" className="mb-3">
-        <Form.Control type="url" placeholder="Enter a venue image url" name="image" value={formInput.image} onChange={handleChange} required />
-      </FloatingLabel>
+        <Form.Control type="url" placeholder="Enter a venue image url" name="eventImage" value={formInput.image} onChange={handleChange} required />
+      </FloatingLabel> */}
 
       <Button type="submit">{obj.id ? 'Update' : 'Create'} Event</Button>
     </Form>
@@ -107,12 +107,12 @@ function EventForm({ obj = initialState }) {
 EventForm.propTypes = {
   obj: PropTypes.shape({
     eventName: PropTypes.string,
-    venueName: PropTypes.string,
+    venue_id: PropTypes.number,
     artist: PropTypes.string,
     details: PropTypes.string,
     ticketUrl: PropTypes.string,
-    ticketPrice: PropTypes.string,
-    imageUrl: PropTypes.string,
+    ticketPrice: PropTypes.number,
+    // imageUrl: PropTypes.string,
     id: PropTypes.number,
   }),
 };

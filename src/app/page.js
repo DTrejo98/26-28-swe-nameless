@@ -27,7 +27,7 @@ function Home() {
   return (
     <div className="text-center my-4">
       <Link href="/events/new" passHref>
-        <Button>Add A Event</Button>
+        <Button>Add an Event</Button>
       </Link>
       <div className="d-flex flex-wrap">
         {events.map((event) => (

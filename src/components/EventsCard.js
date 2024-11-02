@@ -2,12 +2,10 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-
 // eslint-disable-next-line import/no-duplicates
 import Button from 'react-bootstrap/card';
 // eslint-disable-next-line import/no-duplicates
 import Card from 'react-bootstrap/card';
-// eslint-disable-next-line import/no-unresolved
 import Link from 'next/link';
 import { deleteEvent } from '../api/eventData';
 
@@ -25,27 +23,11 @@ function eventsCard({ eventsObj, onUpdate }) {
       <Card.Body>
         <Card.Title>{eventsObj.title}</Card.Title>
         <p className="card-text bold">
-          {/* {eventsObj.sale && (
-              <span>
-                SALE
-                <br />
-              </span>
-            )}{' '} */}
-          {eventsObj.artist}
-          {eventsObj.venue.name}
-          {eventsObj.city}
+          {eventsObj.artist} at {eventsObj.venue.name}
         </p>
-        {/* DYNAMIC LINK TO VIEW THE BOOK DETAILS
-          <Link href={`/book/${bookObj.firebaseKey}`} passHref>
-            <Button variant="primary" className="m-2">
-              VIEW
-            </Button>
-          </Link> */}
-        {/* DYNAMIC LINK TO EDIT THE events DETAILS  */}
         <Link href={`/events/details/${eventsObj.id}`} passHref>
           <Button variant="info">Details</Button>
         </Link>
-
         <Link href={`/events/edit/${eventsObj.id}`} passHref>
           <Button variant="info">Edit</Button>
         </Link>

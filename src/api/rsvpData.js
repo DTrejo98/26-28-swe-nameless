@@ -4,7 +4,7 @@ const endpoint = clientCredentials.databaseURL;
 
 const getAllUserRsvps = (uid) =>
   new Promise((resolve, reject) => {
-    fetch(`${endpoint}/rsvps/user/${uid}`, {
+    fetch(`${endpoint}/rsvps/${uid}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

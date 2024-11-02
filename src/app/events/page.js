@@ -25,7 +25,7 @@ export default function Eventspage() {
 
   return (
     <div className="text-center my-4">
-      <Link href="/events/new" passHref>
+      <Link href="/events/edit/new" passHref>
         <Button>Add Event</Button>
       </Link>
       <div className="d-flex flex-wrap">{events.length === 0 ? <h2>You have not created any events</h2> : events.map((event) => <EventsCard key={event.id} eventsObj={event} onUpdate={getAllTheEvents} />)}</div>

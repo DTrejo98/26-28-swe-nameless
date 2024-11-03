@@ -13,12 +13,12 @@ export default function EventsPage() {
 
   const { user } = useAuth();
 
-  //  *function to get all events
+  // function to get all events
   const getAllTheEvents = () => {
     getAllUserEvents(user.uid).then(setEvents);
   };
 
-  // *make api call to get all events
+  // make api call to get all events
   useEffect(() => {
     getAllTheEvents();
   }, [user]);

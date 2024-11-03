@@ -13,12 +13,12 @@ export default function VenuesPage() {
 
   const { user } = useAuth();
 
-  //  *function to get all venues
+  // function to get all venues
   const getAllTheVenues = () => {
     getAllUserVenues(user.uid).then(setVenues);
   };
 
-  // *make api call to get all venues
+  // make api call to get all venues
   useEffect(() => {
     getAllTheVenues();
   }, [user]);

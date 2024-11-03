@@ -55,7 +55,6 @@ const getSingleEvent = (id) =>
 
 const createEvent = (payload) =>
   new Promise((resolve, reject) => {
-    console.log('Sending data:', payload);
     fetch(`${endpoint}/events`, {
       method: 'POST',
       headers: {

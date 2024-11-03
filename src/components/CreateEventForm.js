@@ -12,13 +12,12 @@ import { createEvent, updateEvents } from '../api/eventData';
 
 // clears out the form after the user submits the form
 const initialState = {
-  eventName: '',
-  venueName: '',
   artist: '',
-  details: '',
+  date: '',
+  venueName: '',
+  imageUrl: '',
   ticketUrl: '',
   ticketPrice: '',
-  imageUrl: '',
 };
 
 // pulls in user and object details
@@ -63,8 +62,12 @@ function EventForm({ obj = initialState }) {
     <Form onSubmit={handleSubmit} className="text-black">
       <h2 className="text-white mt-5">{obj.id ? 'Update' : 'Create'} Event</h2>
 
-      <FloatingLabel controlId="floatingInput1" label="Event Name" className="mb-3">
-        <Form.Control type="text" placeholder="Event Name" name="eventName" value={formInput.eventName} onChange={handleChange} required />
+      <FloatingLabel controlId="floatingInput1" label="Artist or Event Name" className="mb-3">
+        <Form.Control type="text" placeholder="Artist Name" name="artist" value={formInput.artist} onChange={handleChange} required />
+      </FloatingLabel>
+
+      <FloatingLabel controlId="floatingInput2" label="date" className="mb-3">
+        <Form.Control type="date" placeholder="Date" name="date" value={formInput.date} onChange={handleChange} required />
       </FloatingLabel>
 
       {/* Dropdown to select a venue */}
@@ -79,24 +82,16 @@ function EventForm({ obj = initialState }) {
         </Form.Select>
       </FloatingLabel>
 
-      <FloatingLabel controlId="floatingInput2" label="Artist Name" className="mb-3">
-        <Form.Control type="text" placeholder="Artist Name" name="artist" value={formInput.artist} onChange={handleChange} />
+      <FloatingLabel controlId="floatingInput3" label="Event Image" className="mb-3">
+        <Form.Control type="url" placeholder="Enter a venue image url" name="imageUrl" value={formInput.image} onChange={handleChange} />
       </FloatingLabel>
 
-      <FloatingLabel controlId="floatingTextarea" label="Details" className="mb-3">
-        <Form.Control as="textarea" placeholder="Details" style={{ height: '100px' }} name="details" value={formInput.details} onChange={handleChange} required />
-      </FloatingLabel>
-
-      <FloatingLabel controlId="floatingInput3" label="Ticket URL" className="mb-3">
+      <FloatingLabel controlId="floatingInput4" label="Ticket URL" className="mb-3">
         <Form.Control type="url" placeholder="Enter a ticket URL link" name="ticketUrl" value={formInput.ticketUrl} onChange={handleChange} required />
       </FloatingLabel>
 
-      <FloatingLabel controlId="floatingInput4" label="Ticket Price" className="mb-3">
+      <FloatingLabel controlId="floatingInput5" label="Ticket Price" className="mb-3">
         <Form.Control type="number" placeholder="Ticket price" name="ticketPrice" value={formInput.price} onChange={handleChange} required />
-      </FloatingLabel>
-
-      <FloatingLabel controlId="floatingInput5" label="Event Image" className="mb-3">
-        <Form.Control type="url" placeholder="Enter a venue image url" name="imageUrl" value={formInput.image} onChange={handleChange} required />
       </FloatingLabel>
 
       <Button type="submit">{obj.id ? 'Update' : 'Create'} Event</Button>
@@ -106,13 +101,11 @@ function EventForm({ obj = initialState }) {
 
 EventForm.propTypes = {
   obj: PropTypes.shape({
-    eventName: PropTypes.string,
-    venue_id: PropTypes.number,
     artist: PropTypes.string,
-    details: PropTypes.string,
+    venueId: PropTypes.number,
+    imageUrl: PropTypes.string,
     ticketUrl: PropTypes.string,
     ticketPrice: PropTypes.number,
-    imageUrl: PropTypes.string,
     id: PropTypes.number,
   }),
 };

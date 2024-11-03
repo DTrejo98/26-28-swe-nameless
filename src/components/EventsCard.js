@@ -41,11 +41,8 @@ function eventsCard({ eventsObj, onUpdate }) {
 
 eventsCard.propTypes = {
   eventsObj: PropTypes.shape({
-    title: PropTypes.string,
     artist: PropTypes.string,
-    venue: PropTypes.shape({
-      name: PropTypes.string,
-    }),
+    venue: PropTypes.string,
     city: PropTypes.string,
     id: PropTypes.number,
   }).isRequired,

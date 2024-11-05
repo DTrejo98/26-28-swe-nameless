@@ -8,48 +8,75 @@ import Button from 'react-bootstrap/card';
 import Card from 'react-bootstrap/card';
 import Link from 'next/link';
 import { deleteEvent } from '../api/eventData';
+import { useAuth } from '../utils/context/authContext';
 
-function eventsCard({ eventsObj, onUpdate }) {
+function EventsCard({ eventsObj, onUpdate }) {
+  const { user } = useAuth();
+
   // * for deleteing events
   const deleteThisEvent = () => {
-    if (window.confirm(`Delete ${eventsObj.title}?`)) {
+    if (window.confirm(`Delete ${eventsObj.artist} at ${eventsObj.venue?.name}?`)) {
       deleteEvent(eventsObj.id).then(() => onUpdate());
     }
   };
 
+  const isOwner = !eventsObj.id || eventsObj.uid === user.id;
+
   return (
     <Card style={{ width: '18rem', margin: '10px' }}>
       {/* <Card.Img variant="top" src={venuesObj.image} alt={venuesObj.title} style={{ height: '400px' }} /> */}
+      {/* <Card.Img variant="top" src={venuesObj.image} alt={venuesObj.title} style={{ height: '400px' }} /> */}
       <Card.Body>
-        <Card.Title>{eventsObj.title}</Card.Title>
+        {console.warn(eventsObj)}
+        <Card.Title>
+          {eventsObj.artist} at {eventsObj.venue?.name}
+        </Card.Title>
         <p className="card-text bold">
-          {eventsObj.artist} at {eventsObj.venue.name}
+          {/* {eventsObj.sale && (
+              <span>
+                SALE
+                <br />
+              </span>
+            )}{' '} */}
+          {eventsObj.date}
+          {eventsObj.artist}
+          {eventsObj.venue?.name}
+
+          {/* {eventsObj.city} */}
+          {/* {eventsObj.ticketUrl} */}
+          {/* {eventsObj.ticketPrice} */}
         </p>
-        <Link href={`/events/details/${eventsObj.id}`} passHref>
-          <Button variant="info">Details</Button>
-        </Link>
-        <Link href={`/events/edit/${eventsObj.id}`} passHref>
-          <Button variant="info">Edit</Button>
-        </Link>
-        <Button variant="danger" onClick={deleteThisEvent} className="m-2">
-          DELETE
-        </Button>
+
+        {/* *DYNAMIC LINK TO events DETAILS  */}
+        {isOwner && (
+          <Link href={`/events/details/${eventsObj.id}`} passHref>
+            <Button variant="info">Details</Button>
+          </Link>
+        )}
+        {isOwner && (
+          <Button variant="danger" onClick={deleteThisEvent} className="m-2">
+            DELETE
+          </Button>
+        )}
       </Card.Body>
     </Card>
   );
 }
 
-eventsCard.propTypes = {
+EventsCard.propTypes = {
   eventsObj: PropTypes.shape({
-    title: PropTypes.string,
+    date: PropTypes.string,
     artist: PropTypes.string,
+    id: PropTypes.number,
+    uid: PropTypes.string,
     venue: PropTypes.shape({
       name: PropTypes.string,
+      // city: PropTypes.string,
+      // ticketUrl: PropTypes.string,
+      // ticketPrice: PropTypes.number,
     }),
-    city: PropTypes.string,
-    id: PropTypes.number,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
 };
 
-export default eventsCard;
+export default EventsCard;

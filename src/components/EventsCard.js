@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/card';
 // eslint-disable-next-line import/no-duplicates
 import Card from 'react-bootstrap/card';
-// eslint-disable-next-line import/no-unresolved
 import Link from 'next/link';
 import { deleteEvent } from '../api/eventData';
 import { useAuth } from '../utils/context/authContext';
@@ -25,6 +24,7 @@ function EventsCard({ eventsObj, onUpdate }) {
 
   return (
     <Card style={{ width: '18rem', margin: '10px' }}>
+      {/* <Card.Img variant="top" src={venuesObj.image} alt={venuesObj.title} style={{ height: '400px' }} /> */}
       {/* <Card.Img variant="top" src={venuesObj.image} alt={venuesObj.title} style={{ height: '400px' }} /> */}
       <Card.Body>
         {console.warn(eventsObj)}

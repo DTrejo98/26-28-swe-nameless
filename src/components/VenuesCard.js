@@ -24,6 +24,7 @@ function VenuesCard({ venuesObj, onUpdate }) {
   return (
     <Card style={{ width: '18rem', margin: '10px' }}>
       {/* <Card.Img variant="top" src={venuesObj.image} alt={venuesObj.title} style={{ height: '400px' }} /> */}
+
       <Card.Body>
         <Card.Title>{venuesObj.name}</Card.Title>
         <p className="card-text bold">
@@ -37,6 +38,7 @@ function VenuesCard({ venuesObj, onUpdate }) {
           {venuesObj.state}
           {venuesObj.address}
         </p>
+
         {/* DYNAMIC LINK TO VIEW THE Venue DETAILS
           <Link href={`/venues/${venuesObj.id}`} passHref>
             <Button variant="primary" className="m-2">

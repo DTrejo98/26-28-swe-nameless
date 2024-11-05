@@ -89,6 +89,7 @@ const deleteEvent = (id) =>
         'Conent-Type': 'application/json',
       },
     })
+      // .then((response) => response.json())
       .then((data) => resolve(data))
       .catch(reject);
   });

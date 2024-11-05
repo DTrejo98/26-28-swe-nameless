@@ -27,9 +27,9 @@ function VenuesCard({ venuesObj, onUpdate }) {
                 <br />
               </span>
             )}{' '} */}
+          {venuesObj.address}
           {venuesObj.city}
           {venuesObj.state}
-          {venuesObj.address}
         </p>
         {/* DYNAMIC LINK TO VIEW THE Venue DETAILS
           <Link href={`/venues/${venuesObj.id}`} passHref>

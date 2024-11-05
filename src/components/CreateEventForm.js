@@ -14,7 +14,7 @@ import { createEvent, updateEvents } from '../api/eventData';
 const initialState = {
   artist: '',
   date: '',
-  venueName: '',
+  venue: '',
   imageUrl: '',
   ticketUrl: '',
   ticketPrice: '',
@@ -72,7 +72,7 @@ function EventForm({ obj = initialState }) {
 
       {/* Dropdown to select a venue */}
       <FloatingLabel controlId="floatingSelect" label="Venue Name">
-        <Form.Select aria-label="Venue" name="venue_id" onChange={handleChange} className="mb-3" value={formInput.venue_id || ''} required>
+        <Form.Select aria-label="Venue" name="venueId" onChange={handleChange} className="mb-3" value={formInput.venueId || ''} required>
           <option value="">Select a Venue</option>
           {venues.map((venue) => (
             <option key={venue.id} value={venue.id}>
@@ -102,7 +102,8 @@ function EventForm({ obj = initialState }) {
 EventForm.propTypes = {
   obj: PropTypes.shape({
     artist: PropTypes.string,
-    venueId: PropTypes.number,
+    date: PropTypes.string,
+    venue: PropTypes.string,
     imageUrl: PropTypes.string,
     ticketUrl: PropTypes.string,
     ticketPrice: PropTypes.number,

@@ -41,7 +41,7 @@ function VenuesCard({ venuesObj, onUpdate }) {
           <Link href={`/venues/${venuesObj.id}`} passHref>
             <Button variant="primary" className="m-2">
               VIEW
-            </Button>
+            <Button>
           </Link> */}
         {/* DYNAMIC LINK TO EDIT THE venues DETAILS  */}
         {isOwner && (

@@ -3,14 +3,13 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
-import { getSingleEvent } from '../../../../api/eventData';
+import { deleteEvent, getSingleEvent } from '../../../../api/eventData';
 import { useAuth } from '../../../../utils/context/authContext';
-import { createRsvp, deleteRsvp, getAllUserRsvps } from '../../../../api/rsvpData';
+import { createRsvp, deleteRsvp, getSingleUserRsvp } from '../../../../api/rsvpData';
 
 export default function ViewEventDetails({ params }) {
   const [eventDetails, setEventDetails] = useState({});
   const [rsvpd, setRsvpd] = useState(false);
-  const [rsvpDetails, setRsvpDetails] = useState({});
   const { id } = params;
   const { user } = useAuth();
 
@@ -18,14 +17,16 @@ export default function ViewEventDetails({ params }) {
     getSingleEvent(id).then((data) => {
       setEventDetails(data);
     });
-  }, [id]);
+    getSingleUserRsvp(user.uid, id).then((rsvpData) => {
+      setRsvpd(!!rsvpData);
+    });
+  }, [id, user]);
 
   const rsvp = () => {
     const payload = {
       eventId: id,
       uid: user.uid,
     };
-    console.log(payload);
     createRsvp(payload).then(() => {
       setRsvpd(true); // Update state after RSVP
     });
@@ -33,17 +34,19 @@ export default function ViewEventDetails({ params }) {
 
   const rescindRsvp = () => {
     if (window.confirm(`Rescind RSVP?`)) {
-      getAllUserRsvps(user.uid).then((data) => {
-        setRsvpDetails(data);
-      });
-      const rsvpId = rsvpDetails[0]?.id;
-      console.log(rsvpId);
-      console.log(rsvpDetails);
-      deleteRsvp(rsvpId).then(() => {
+      deleteRsvp(user.uid, id).then(() => {
         setRsvpd(false); // Update state after rescinding RSVP
       });
     }
   };
+
+  const deleteThisEvent = () => {
+    if (window.confirm(`Delete ${eventDetails.artist} at ${eventDetails.venue?.name}?`)) {
+      deleteEvent(id).then();
+    }
+  };
+
+  const isOwner = !id || user.uid === user.id;
 
   return (
     <div className="mt-5 d-flex flex-wrap">
@@ -59,6 +62,11 @@ export default function ViewEventDetails({ params }) {
           <Button variant={rsvpd ? 'danger' : 'outline-danger'} onClick={rsvpd ? rescindRsvp : rsvp}>
             {rsvpd ? 'Rescind RSVP' : 'RSVP'}
           </Button>
+          {isOwner && (
+            <Button variant="danger" onClick={deleteThisEvent} className="m-2">
+              DELETE
+            </Button>
+          )}
         </h3>
       </div>
     </div>

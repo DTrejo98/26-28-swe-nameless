@@ -57,11 +57,9 @@ function EventsCard({ eventsObj, onUpdate }) {
         </p>
 
         {/* *DYNAMIC LINK TO events DETAILS  */}
-        {isOwner && (
-          <Link href={`/events/details/${eventsObj.id}`} passHref>
-            <Button variant="info">Details</Button>
-          </Link>
-        )}
+        <Link href={`/events/details/${eventsObj.id}`} passHref>
+          <Button variant="info">Details</Button>
+        </Link>
         {isOwner && (
           <Button variant="danger" onClick={deleteThisEvent} className="m-2">
             DELETE

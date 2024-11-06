@@ -83,7 +83,7 @@ function EventForm({ obj = initialState }) {
       </FloatingLabel>
 
       <FloatingLabel controlId="floatingInput3" label="Event Image" className="mb-3">
-        <Form.Control type="url" placeholder="Enter a venue image url" name="imageUrl" value={formInput.image} onChange={handleChange} />
+        <Form.Control type="url" placeholder="Enter a venue image url" name="imageUrl" value={formInput.imageUrl} onChange={handleChange} />
       </FloatingLabel>
 
       <FloatingLabel controlId="floatingInput4" label="Ticket URL" className="mb-3">
@@ -91,7 +91,7 @@ function EventForm({ obj = initialState }) {
       </FloatingLabel>
 
       <FloatingLabel controlId="floatingInput5" label="Ticket Price" className="mb-3">
-        <Form.Control type="number" placeholder="Ticket price" name="ticketPrice" value={formInput.price} onChange={handleChange} required />
+        <Form.Control type="number" placeholder="Ticket price" name="ticketPrice" value={formInput.ticketPrice} onChange={handleChange} required />
       </FloatingLabel>
 
       <Button type="submit">{obj.id ? 'Update' : 'Create'} Event</Button>

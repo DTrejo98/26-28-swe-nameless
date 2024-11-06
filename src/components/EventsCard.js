@@ -22,6 +22,15 @@ function EventsCard({ eventsObj, onUpdate }) {
 
   const isOwner = !eventsObj.id || eventsObj.uid === user.id;
 
+  //   const date = new Date(eventsObj.date);
+  // // Using toLocaleDateString() for locale-aware formatting
+  // const formattedDate = date.toLocaleDateString('en-US', {
+  //     year: 'numeric',
+  //     month: 'long',
+  //     day: 'numeric',
+  // });
+  // console.log(formattedDate);
+
   return (
     <Card style={{ width: '18rem', margin: '10px' }}>
       {/* <Card.Img variant="top" src={venuesObj.image} alt={venuesObj.title} style={{ height: '400px' }} /> */}

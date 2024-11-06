@@ -44,9 +44,7 @@ const getSingleEvent = (id) =>
   new Promise((resolve, reject) => {
     fetch(`${endpoint}/events/${id}`, {
       method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: {},
     })
       .then((response) => response.json())
       .then((data) => resolve(data))
@@ -89,7 +87,6 @@ const deleteEvent = (id) =>
         'Conent-Type': 'application/json',
       },
     })
-      // .then((response) => response.json())
       .then((data) => resolve(data))
       .catch(reject);
   });

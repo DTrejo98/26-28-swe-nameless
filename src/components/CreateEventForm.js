@@ -50,10 +50,10 @@ function EventForm({ obj = initialState }) {
     const payload = { ...formInput, uid: user.uid };
     // if the object already has an id then the updateVenues function is called router pushes the updated information to the venues page-else it creates a new venue
     if (obj.id) {
-      updateEvents(payload).then(() => router.push(`/events/`));
+      updateEvents(payload).then(() => router.push(`/events`));
     } else {
       createEvent(payload).then(() => {
-        router.push(`/events/`);
+        router.push(`/events`);
       });
     }
   };

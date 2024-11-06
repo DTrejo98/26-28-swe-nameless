@@ -16,6 +16,7 @@ export default function Eventspage() {
   // *function to get all events
   const getAllTheEvents = () => {
     getAllUserEvents(user.uid).then(setEvents);
+    console.log(user.uid);
   };
 
   // *make api call to get events

@@ -8,7 +8,7 @@ import { signOut } from '../utils/auth';
 export default function NavBar() {
   // const { user } = useAuth();
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" id="navbar">
       <Container>
         <Link passHref href="/">
           <Navbar.Brand>Ticket Republic</Navbar.Brand>
@@ -28,6 +28,9 @@ export default function NavBar() {
             </Link>
             <Link className="nav-link" href="/venues/edit/new">
               Create Venue
+            </Link>
+            <Link className="nav-link" href="/events/new">
+              Create Event
             </Link>
             <Button variant="danger" onClick={signOut}>
               Sign Out

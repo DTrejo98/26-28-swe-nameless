@@ -29,14 +29,22 @@ function EventForm({ obj = initialState }) {
 
   // brings venue data in for editing the venue
   useEffect(() => {
+    // Fetch all venues and set the state
     getAllVenues().then(setVenues);
 
-    if (obj.id) setFormInput(obj);
+    // Conditional logic based on obj.id
+    if (obj.id) {
+      setFormInput({
+        ...obj,
+        date: obj.date ? obj.date.slice(0, 10) : '',
+      });
+    }
   }, [obj]);
 
   // Grants access to the event object, destructing the name and the value of the form input
   const handleChange = (e) => {
     const { name, value } = e.target;
+
     // calling setVenueDetails modifying prevState and spreading it
     setFormInput((prevState) => ({
       ...prevState,

@@ -18,7 +18,11 @@ export default function ViewEventDetails({ params }) {
       setEventDetails(data);
     });
     getSingleUserRsvp(user.uid, id).then((rsvpData) => {
-      setRsvpd(!!rsvpData);
+      if (rsvpData === false) {
+        setRsvpd(true);
+      } else {
+        setRsvpd(false);
+      }
     });
   }, [id, user]);
 

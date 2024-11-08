@@ -28,7 +28,9 @@ function EventsCard({ eventsObj, onUpdate }) {
       <Card.Body>
         {console.warn(eventsObj)}
         <Card.Title>
-          {eventsObj.artist} at {eventsObj.venue?.name}
+          {eventsObj.artist}
+          <br /> {eventsObj.venue?.name}
+          <br />
         </Card.Title>
         <p className="card-text bold">
           {/* {eventsObj.sale && (
@@ -38,12 +40,10 @@ function EventsCard({ eventsObj, onUpdate }) {
               </span>
             )}{' '} */}
           {eventsObj.date ? eventsObj.date.slice(0, 10) : ''}
-          {eventsObj.artist}
-          {eventsObj.venue?.name}
-
+          <br />
           {/* {eventsObj.city} */}
           {eventsObj.ticketUrl}
-          {eventsObj.ticketPrice}
+          <br />${eventsObj.ticketPrice}
         </p>
 
         {/* *DYNAMIC LINK TO events DETAILS  */}
@@ -56,7 +56,7 @@ function EventsCard({ eventsObj, onUpdate }) {
           </Link>
         )}
         {isOwner && (
-          <Button variant="danger" onClick={deleteThisEvent} className="m-2">
+          <Button variant="outline-danger" onClick={deleteThisEvent} className="m-2">
             DELETE
           </Button>
         )}

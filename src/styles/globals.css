@@ -2,3 +2,28 @@ body {
   background: black;
   color: white;
 }
+
+#card {
+  background-color: lightgray;
+}
+#ticket {
+  background-color: gray;
+  color: blue;
+  size: small;
+}
+
+#details {
+  background-color: gray;
+  color: blue;
+  margin: 8px;
+}
+
+#edit {
+  background-color: gray;
+  color: blue;
+}
+
+#delete {
+  background-color: gray;
+  color: red;
+}

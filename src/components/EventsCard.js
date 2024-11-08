@@ -23,10 +23,9 @@ function EventsCard({ eventsObj, onUpdate }) {
   const isOwner = !eventsObj.id || eventsObj.uid === user.uid;
 
   return (
-    <Card style={{ width: '18rem', margin: '10px' }}>
+    <Card id="card" style={{ width: '18rem', margin: '10px' }}>
       <Card.Img variant="top" src={eventsObj.imageUrl} alt={eventsObj.artist} style={{ height: '400px' }} />
       <Card.Body>
-        {console.warn(eventsObj)}
         <Card.Title>
           {eventsObj.artist}
           <br /> {eventsObj.venue?.name}
@@ -42,21 +41,29 @@ function EventsCard({ eventsObj, onUpdate }) {
           {eventsObj.date ? eventsObj.date.slice(0, 10) : ''}
           <br />
           {/* {eventsObj.city} */}
-          {eventsObj.ticketUrl}
+          <Link href={eventsObj.ticketUrl}>
+            <Button variant="primary" size="sm" id="ticket">
+              Tickets
+            </Button>
+          </Link>
           <br />${eventsObj.ticketPrice}
         </p>
 
         {/* *DYNAMIC LINK TO events DETAILS  */}
         <Link href={`/events/details/${eventsObj.id}`} passHref>
-          <Button variant="info">Details</Button>
+          <Button id="details" variant="primary">
+            Details
+          </Button>
         </Link>
         {isOwner && (
           <Link href={`/events/edit/${eventsObj.id}`} passHref>
-            <Button variant="info">Edit</Button>
+            <Button id="edit" variant="info">
+              Edit
+            </Button>
           </Link>
         )}
         {isOwner && (
-          <Button variant="outline-danger" onClick={deleteThisEvent} className="m-2">
+          <Button id="delete" onClick={deleteThisEvent} className="m-2">
             DELETE
           </Button>
         )}

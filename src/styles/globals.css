@@ -9,21 +9,32 @@ body {
 #ticket {
   background-color: gray;
   color: blue;
-  size: small;
+  width: 50%;
+  display: block;
+  margin: auto;
 }
 
 #details {
   background-color: gray;
   color: blue;
-  margin: 8px;
+  width: 80%;
+  display: block;
+  margin: auto;
 }
 
 #edit {
   background-color: gray;
   color: blue;
+  margin: auto;
+  width: 80%;
+  display: block;
+  
 }
 
 #delete {
   background-color: gray;
   color: red;
+  margin: auto;
+  width: 80%;
+  display: block;
 }

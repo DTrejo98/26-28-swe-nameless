@@ -39,27 +39,29 @@ function EventsCard({ eventsObj, onUpdate }) {
               </span>
             )}{' '} */}
           {eventsObj.date ? eventsObj.date.slice(0, 10) : ''}
-          <br />
-          {/* {eventsObj.city} */}
-          <Link href={eventsObj.ticketUrl}>
-            <Button variant="primary" size="sm" id="ticket">
-              Tickets
-            </Button>
-          </Link>
           <br />${eventsObj.ticketPrice}
+          <br />
         </p>
-
+        {/* {eventsObj.city} */}
+        <Link href={eventsObj.ticketUrl}>
+          <Button variant="primary" size="sm" id="ticket">
+            Tickets
+          </Button>
+        </Link>
+        <br />
         {/* *DYNAMIC LINK TO events DETAILS  */}
         <Link href={`/events/details/${eventsObj.id}`} passHref>
           <Button id="details" variant="primary">
             Details
           </Button>
+          <br />
         </Link>
         {isOwner && (
           <Link href={`/events/edit/${eventsObj.id}`} passHref>
             <Button id="edit" variant="info">
               Edit
             </Button>
+            <br />
           </Link>
         )}
         {isOwner && (

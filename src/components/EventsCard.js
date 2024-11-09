@@ -23,12 +23,13 @@ function EventsCard({ eventsObj, onUpdate }) {
   const isOwner = !eventsObj.id || eventsObj.uid === user.uid;
 
   return (
-    <Card style={{ width: '18rem', margin: '10px' }}>
+    <Card id="card" style={{ width: '18rem', margin: '10px' }}>
       <Card.Img variant="top" src={eventsObj.imageUrl} alt={eventsObj.artist} style={{ height: '400px' }} />
       <Card.Body>
-        {console.warn(eventsObj)}
         <Card.Title>
-          {eventsObj.artist} at {eventsObj.venue?.name}
+          {eventsObj.artist}
+          <br /> {eventsObj.venue?.name}
+          <br />
         </Card.Title>
         <p className="card-text bold">
           {/* {eventsObj.sale && (
@@ -38,25 +39,33 @@ function EventsCard({ eventsObj, onUpdate }) {
               </span>
             )}{' '} */}
           {eventsObj.date ? eventsObj.date.slice(0, 10) : ''}
-          {eventsObj.artist}
-          {eventsObj.venue?.name}
-
-          {/* {eventsObj.city} */}
-          {eventsObj.ticketUrl}
-          {eventsObj.ticketPrice}
+          <br />${eventsObj.ticketPrice}
+          <br />
         </p>
-
+        {/* {eventsObj.city} */}
+        <Link href={eventsObj.ticketUrl}>
+          <Button variant="primary" size="sm" id="ticket">
+            Tickets
+          </Button>
+        </Link>
+        <br />
         {/* *DYNAMIC LINK TO events DETAILS  */}
         <Link href={`/events/details/${eventsObj.id}`} passHref>
-          <Button variant="info">Details</Button>
+          <Button id="details" variant="primary">
+            Details
+          </Button>
+          <br />
         </Link>
         {isOwner && (
           <Link href={`/events/edit/${eventsObj.id}`} passHref>
-            <Button variant="info">Edit</Button>
+            <Button id="edit" variant="info">
+              Edit
+            </Button>
+            <br />
           </Link>
         )}
         {isOwner && (
-          <Button variant="danger" onClick={deleteThisEvent} className="m-2">
+          <Button id="delete" onClick={deleteThisEvent} className="m-2">
             DELETE
           </Button>
         )}

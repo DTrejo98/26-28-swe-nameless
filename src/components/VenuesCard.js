@@ -22,7 +22,7 @@ function VenuesCard({ venuesObj, onUpdate }) {
   const isOwner = !venuesObj.id || venuesObj.uid === user.uid;
 
   return (
-    <Card style={{ width: '18rem', margin: '10px' }}>
+    <Card id="card" style={{ width: '18rem', margin: '10px' }}>
       {/* <Card.Img variant="top" src={venuesObj.image} alt={venuesObj.title} style={{ height: '400px' }} /> */}
 
       <Card.Body>
@@ -35,6 +35,7 @@ function VenuesCard({ venuesObj, onUpdate }) {
               </span>
             )}{' '} */}
           {venuesObj.address}
+          <br />
           {venuesObj.city}
           {venuesObj.state}
         </p>
@@ -48,11 +49,13 @@ function VenuesCard({ venuesObj, onUpdate }) {
         {/* DYNAMIC LINK TO EDIT THE venues DETAILS  */}
         {isOwner && (
           <Link href={`/venues/edit/${venuesObj.id}`} passHref>
-            <Button variant="info">Edit</Button>
+            <Button id="edit" variant="info">
+              Edit
+            </Button>
           </Link>
         )}
         {isOwner && (
-          <Button variant="danger" onClick={deleteThisVenue} className="m-2">
+          <Button id="delete" variant="danger" onClick={deleteThisVenue} className="m-2">
             DELETE
           </Button>
         )}

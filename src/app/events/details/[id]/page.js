@@ -32,7 +32,7 @@ export default function ViewEventDetails({ params }) {
       uid: user.uid,
     };
     createRsvp(payload).then(() => {
-      setRsvpd(true); // Update state after RSVP
+      setRsvpd(false); // Update state after RSVP
     });
   };
 
@@ -64,7 +64,7 @@ export default function ViewEventDetails({ params }) {
             <li>{eventDetails.venue?.state}</li>
           </ul>
           <Button variant={rsvpd ? 'danger' : 'outline-danger'} onClick={rsvpd ? rescindRsvp : rsvp}>
-            {rsvpd ? 'Rescind RSVP' : 'RSVP'}
+            {rsvpd ? 'RecindRSVP' : 'RSVP'}
           </Button>
           {isOwner && (
             <Button variant="danger" onClick={deleteThisEvent} className="m-2">

@@ -20,21 +20,11 @@ function EventsCard({ eventsObj, onUpdate }) {
     }
   };
 
-  const isOwner = !eventsObj.id || eventsObj.uid === user.id;
-
-  //   const date = new Date(eventsObj.date);
-  // // Using toLocaleDateString() for locale-aware formatting
-  // const formattedDate = date.toLocaleDateString('en-US', {
-  //     year: 'numeric',
-  //     month: 'long',
-  //     day: 'numeric',
-  // });
-  // console.log(formattedDate);
+  const isOwner = !eventsObj.id || eventsObj.uid === user.uid;
 
   return (
     <Card style={{ width: '18rem', margin: '10px' }}>
-      {/* <Card.Img variant="top" src={venuesObj.image} alt={venuesObj.title} style={{ height: '400px' }} /> */}
-      {/* <Card.Img variant="top" src={venuesObj.image} alt={venuesObj.title} style={{ height: '400px' }} /> */}
+      <Card.Img variant="top" src={eventsObj.imageUrl} alt={eventsObj.artist} style={{ height: '400px' }} />
       <Card.Body>
         {console.warn(eventsObj)}
         <Card.Title>
@@ -47,19 +37,24 @@ function EventsCard({ eventsObj, onUpdate }) {
                 <br />
               </span>
             )}{' '} */}
-          {eventsObj.date}
+          {eventsObj.date ? eventsObj.date.slice(0, 10) : ''}
           {eventsObj.artist}
           {eventsObj.venue?.name}
 
           {/* {eventsObj.city} */}
-          {/* {eventsObj.ticketUrl} */}
-          {/* {eventsObj.ticketPrice} */}
+          {eventsObj.ticketUrl}
+          {eventsObj.ticketPrice}
         </p>
 
         {/* *DYNAMIC LINK TO events DETAILS  */}
         <Link href={`/events/details/${eventsObj.id}`} passHref>
           <Button variant="info">Details</Button>
         </Link>
+        {isOwner && (
+          <Link href={`/events/edit/${eventsObj.id}`} passHref>
+            <Button variant="info">Edit</Button>
+          </Link>
+        )}
         {isOwner && (
           <Button variant="danger" onClick={deleteThisEvent} className="m-2">
             DELETE
@@ -76,11 +71,11 @@ EventsCard.propTypes = {
     artist: PropTypes.string,
     id: PropTypes.number,
     uid: PropTypes.string,
+    ticketUrl: PropTypes.string,
+    ticketPrice: PropTypes.number,
+    imageUrl: PropTypes.string,
     venue: PropTypes.shape({
       name: PropTypes.string,
-      // city: PropTypes.string,
-      // ticketUrl: PropTypes.string,
-      // ticketPrice: PropTypes.number,
     }),
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
